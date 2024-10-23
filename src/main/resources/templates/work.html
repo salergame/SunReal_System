@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Управление службами</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Подключение стилей -->
+</head>
+
+<body>
+    <header>
+        <h1>Управление службами</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/management">Управление</a></li>
+            <li><a href="/work">Службы</a></li>
+        </ul>
+    </nav>
+
+    <section class="service-management-section">
+        <h2>Выберите услугу для комнаты</h2>
+        <form action="/services/apply" method="post">
+            <div class="floor-selection">
+                <label for="floorSelect">Выберите этаж:</label>
+                <select id="floorSelect" name="floor" required>
+                    <option value="" disabled selected>Выберите этаж</option>
+                    <!-- Этажи добавляются через скрипт -->
+                </select>
+            </div>
+
+            <div id="roomSelection" class="room-selection">
+                <h3>Выберите комнату:</h3>
+                <div class="room-grid">
+                    <!-- Комнаты будут добавлены через JavaScript в виде квадратов -->
+                </div>
+            </div>
+
+            <div class="service-selection">
+                <h3>Выберите услугу:</h3>
+                <select id="serviceSelect" name="service" required>
+                    <option value="" disabled selected>Выберите услугу</option>
+                    <option value="cleaning">Уборка</option>
+                    <option value="food_delivery">Доставка еды</option>
+                    <option value="laundry">Прачечная</option>
+                    <!-- Другие услуги -->
+                </select>
+            </div>
+
+            <button type="submit">Применить услугу</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Svist.co Все права защищены.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script> <!-- Подключение скриптов -->
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+/* Основной стиль */
+html {
+    font-size: 16px; /* Задаем стандартный размер шрифта 16px */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #1E90FF;
+    padding: 1.25rem; /* Примерно 20px */
+    text-align: center;
+    color: white;
+    font-size: 2rem; /* Примерно 32px */
+    animation: fadeIn 2s ease-in-out;
+}
+
+nav {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #1E90FF;
+    font-size: 1.125rem; /* Примерно 18px */
+    padding: 0.625rem 1.25rem; /* Примерно 10px и 20px */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #4682B4;
+}
+
+.main-content {
+    flex-grow: 1;
+    text-align: center;
+    padding: 50px;
+}
+
+/* Секция управления */
+.management-section, .service-management-section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.management-section h2, .service-management-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.service-item {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.service-item:hover {
+    background-color: #e0e0e0;
+}
+
+/* Поля ввода, селекты и кнопки */
+input[type="text"], input[type="date"], input[type="time"], select, button {
+    width: 100%; /* 100% ширина для кнопок и полей формы */
+    height: 50px; /* Устанавливаем фиксированную высоту для всех полей и кнопок */
+    padding: 0.625rem; /* Примерно 10px */
+    font-size: 1rem; /* Примерно 16px */
+    border: 1px solid #ddd;
+    border-radius: 0.25rem; /* Примерно 4px */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    margin-bottom: 1rem; /* Отступ снизу */
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007BFF; /* Изменение цвета границы при фокусе */
+    outline: none;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.625rem; /* Примерно 10px */
+    font-size: 1rem; /* Примерно 16px */
+    border: none;
+    border-radius: 0.25rem; /* Примерно 4px */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Темный оттенок при наведении */
+}
+
+/* Сетка для отображения номеров комнат */
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Максимум 6 колонок */
+    gap: 10px; /* Промежутки между комнатами */
+    margin-top: 10px; /* Отступ сверху для секции комнат */
+}
+
+.room {
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Высота для каждой комнаты */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.room:hover {
+    background-color: #e0e0e0; /* Изменение цвета при наведении */
+}
+
+.room.selected {
+    background-color: #007BFF;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Арка комнат для услуг */
+.room-arc {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.room-arc .room {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.room-arc .room:hover {
+    background-color: #e0e0e0;
+}
+
+.room-arc .room.selected {
+    background-color: #007BFF;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Стиль футера */
+footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+}
+
+/* Анимация для заголовка */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

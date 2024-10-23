@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Управление отелем</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Управление отелем</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="management.html">Управление</a></li>
+            <li><a href="work.html">Службы</a></li>
+        </ul>
+    </nav>
+
+    <section class="management-section">
+        <h2>Управление бронированиями</h2>
+        <form action="/management/bookings" method="post">
+            <label for="clientName">Имя клиента:</label>
+            <input type="text" id="clientName" name="clientName" required>
+    
+            <div class="floor-selection">
+                <label for="floorSelect">Выберите этаж:</label>
+                <select id="floorSelect" name="floor" required>
+                    <option value="" disabled selected>Выберите этаж</option>
+                    <!-- Этажи будут добавлены через JavaScript -->
+                </select>
+            </div>
+    
+            <div id="roomSelection" class="room-selection">
+                <h3>Выберите номер комнаты:</h3>
+                <div class="room-grid">
+                    <!-- Квадраты для комнат будут добавлены через JavaScript -->
+                </div>
+            </div>
+    
+            <label for="date">Дата бронирования:</label>
+            <input type="date" id="date" name="date" required>
+    
+            <label for="time">Время бронирования:</label>
+            <input type="time" id="time" name="time" required>
+    
+            <button type="submit">Добавить бронирование</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Svist.co Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Статические данные этажей и комнат
+            const floors = [
+                { number: 1, rooms: [{ number: 101 }, { number: 102 }] },
+                { number: 2, rooms: [{ number: 201 }, { number: 202 }] },
+                { number: 3, rooms: [{ number: 301 }] }
+            ];
+
+            // Функция для загрузки этажей
+            function loadFloors() {
+                const floorSelect = document.getElementById('floorSelect');
+                floorSelect.innerHTML = ''; // Очистить предыдущие опции
+                floors.forEach(floor => {
+                    const option = document.createElement('option');
+                    option.value = floor.number; // Предполагается, что у вас есть свойство 'number'
+                    option.textContent = `Этаж ${floor.number}`;
+                    floorSelect.appendChild(option);
+                });
+            }
+
+            // Функция для загрузки доступных номеров по выбранному этажу
+            function loadRoomsByFloor(floor) {
+                const selectedFloor = floors.find(f => f.number == floor);
+                const rooms = selectedFloor ? selectedFloor.rooms : [];
+
+                const roomGrid = document.querySelector('.room-grid');
+                roomGrid.innerHTML = ''; // Очистить предыдущие квадраты
+
+                if (rooms.length === 0) {
+                    const message = document.createElement('div');
+                    message.textContent = 'Нет доступных комнат';
+                    roomGrid.appendChild(message);
+                    return;
+                }
+
+                rooms.forEach(room => {
+                    const roomDiv = document.createElement('div');
+                    roomDiv.className = 'room';
+                    roomDiv.textContent = `Комната ${room.number}`;
+                    roomDiv.dataset.roomNumber = room.number; // Хранение номера комнаты в data-атрибуте
+
+                    roomDiv.addEventListener('click', () => {
+                        document.querySelectorAll('.room').forEach(r => r.classList.remove('selected'));
+                        roomDiv.classList.add('selected');
+                        document.getElementById('roomNumber').value = roomDiv.dataset.roomNumber; // Установить выбранный номер
+                    });
+
+                    roomGrid.appendChild(roomDiv);
+                });
+            }
+
+            // Обработчик события для выбора этажа
+            document.getElementById('floorSelect').addEventListener('change', function () {
+                const selectedFloor = this.value;
+                loadRoomsByFloor(selectedFloor); // Загружаем комнаты для выбранного этажа
+            });
+
+            loadFloors(); // Инициализируем загрузку этажей
+        });
+    </script>
+</body>
+
+</html>
