@@ -27,5 +27,13 @@ public class ManagementController {
         return "redirect:/management";
     }
 
+    // New method to serve work.html
+    @GetMapping("/work")
+    public String showWorkPage(Model model) {
+        // Передаем данные на work.html, если необходимо
+        model.addAttribute("pageTitle", "Рабочая страница");
+        return "work";  // Ensure work.html exists in the templates directory
+    }
+
     // Другие методы для управления клиентами, номерами, услугами и т.д.
 }
